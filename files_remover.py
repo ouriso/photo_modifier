@@ -33,11 +33,13 @@ class FileRemover:
                                    cls.extension_cleaner(origin_list, origin_ext))
         print(f'Подтвердите удаление {len(diff)} файлов из папки {to_remove_dir}')
         if input() != 'y':
+            print('Отмена удаления')
             return
         for f_name in diff:
             file_path = path.join(to_remove_dir, f_name + '.' + to_remove_ext)
             if isfile(file_path):
                 remove(file_path)
+        print('Файлы удалены успешно')
 
     @classmethod
     def get_max_files_size(cls, path_dir: str, from_size: int):
@@ -53,7 +55,7 @@ class FileRemover:
 
 
 if __name__ == '__main__':
-    origin_files = r'/Users/a.gumerov/Pictures/JPEG/2022 Авто'
-    files_to_remove = r'/Users/a.gumerov/Pictures/RAW/2022 Авто'
+    origin_files = r'/Users/a.gumerov/Pictures/JPEG/2022 Гелиос'
+    files_to_remove = r'/Users/a.gumerov/Pictures/RAW/2022 Гелиос'
     FileRemover.files_remover(origin_files, files_to_remove, 'jpg', 'orf')
     print('Done')
